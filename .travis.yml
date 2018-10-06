@@ -1,0 +1,36 @@
+#!.travis.yml
+
+branches:
+  only:
+    - master
+dist: bionic
+sudo: require
+
+before_install:
+  - "sudo apt-get -qq update"
+  - "sudo apt-get install --no-install-recommends texlive-fonts-recommended textlive-full texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng"
+
+script:
+  - mkdir _build
+  - pdflatex -output-directory=_build -interaction=batchmode -file-line-error -no-shell-escape sponsordoc-presentation.tex
+  - pdflatex -output-directory=_build -interaction=batchmode -file-line-error -no-shell-escape sponsordoc-presentation.tex
+  - pdflatex -output-directory=_build -interaction=batchmode -file-line-error -no-shell-escape sponsordoc.tex
+  - pdflatex -output-directory=_build -interaction=batchmode -file-line-error -no-shell-escape sponsordoc.tex
+
+deploy:
+  provider: releases
+  verbose: true
+  skip_cleanup: true
+  github_token: ${GH_TOKEN}
+  file:
+  - _build/sponsordoc-presentation.pdf
+  - _build/sponsdoc.pdf
+  on:
+    branch: master
+
+notifications:
+  irc:
+    channels:
+      - "irc.frenode.org#cfgmgmtcamp"
+        on_success: change
+
