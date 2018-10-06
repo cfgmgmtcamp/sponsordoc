@@ -11,10 +11,10 @@ install:
 
 script:
 - mkdir _build
-- pdflatex -output-directory=_build -interaction=batchmode -file-line-error -no-shell-escape sponsordoc-presentation.tex
-- pdflatex -output-directory=_build -interaction=batchmode -file-line-error -no-shell-escape sponsordoc-presentation.tex
-- pdflatex -output-directory=_build -interaction=batchmode -file-line-error -no-shell-escape sponsordoc.tex
-- pdflatex -output-directory=_build -interaction=batchmode -file-line-error -no-shell-escape sponsordoc.tex
+- pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc-presentation.tex
+- pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc-presentation.tex
+- pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc.tex
+- pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc.tex
 
 deploy:
   provider: releases
