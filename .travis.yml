@@ -1,9 +1,8 @@
 #!.travis.yml
-
 branches:
   only:
     - master
-dist: bionic
+
 sudo: require
 
 before_install:
