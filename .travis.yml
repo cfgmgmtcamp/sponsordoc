@@ -5,7 +5,7 @@ branches:
 
 sudo: require
 
-before_install:
+install:
 - "sudo apt-get -qq update"
 - "sudo apt-get install --no-install-recommends texlive-fonts-recommended textlive-full texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng"
 
