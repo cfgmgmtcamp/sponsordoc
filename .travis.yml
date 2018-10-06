@@ -20,16 +20,12 @@ deploy:
   provider: releases
   verbose: true
   skip_cleanup: true
+  keep-history: true
   github_token: ${GH_TOKEN}
+  local-dir: _build
   file:
   - _build/sponsordoc-presentation.pdf
   - _build/sponsdoc.pdf
   on:
     branch: master
-
-notifications:
-  irc:
-    channels:
-      - "irc.frenode.org#cfgmgmtcamp"
-        on_success: change
 
