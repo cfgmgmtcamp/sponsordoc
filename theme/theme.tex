@@ -1,0 +1,88 @@
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=1cm]{images/background.png}}
+\def\outercolor{black}
+\def\textfontcolor{cyan}
+\def\structurecolor{green}
+\def\sidebarcolor{yellow}
+\def\footercolor{cyan}
+%\useoutertheme[height=0pt,width=1.5cm,left]{sidebar}
+\setbeamercolor*{author in head/foot}{fg=\footercolor,bg=\outercolor,parent=palette tertiary}
+\setbeamercolor*{institute in head/foot}{fg=\footercolor,bg=\outercolor,parent=palette tertiary}
+\setbeamercolor*{title in head/foot}{fg=\footercolor,bg=\outercolor,parent=palette secondary}
+\setbeamercolor*{date in head/foot}{fg=\footercolor,bg=\outercolor,parent=palette primary}
+\defbeamertemplate*{footline}{infolines theme}{%
+    \leavevmode%
+    \hbox{%\begin{scriptsize}\end{scriptsize}
+        \begin{beamercolorbox}[wd=.444444\paperwidth,ht=2.25ex,dp=0.5ex,left]{title in head/foot}%
+            \usebeamerfont{title in head/foot}\insertshorttitle%
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.444444\paperwidth,ht=2.25ex,dp=0.5ex,left]{author in head/foot}%
+            \usebeamerfont{author in head/foot}\insertshortauthor%
+            %\usebeamerfont{author in head/foot} (\insertshortinstitute)%
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.111111\paperwidth,ht=2.25ex,dp=0.5ex,right]{date in head/foot}%
+            %\usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}%
+            \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} %
+        \end{beamercolorbox}%
+    }
+\vskip0pt%
+}
+\useinnertheme{circles}%
+%\useinnertheme{inmargin}
+%\useinnertheme{rectangles}
+%\useinnertheme{rounded}
+%\usefonttheme[only large]{structurebold}
+\setbeamercolor{sidebar left}{bg=\outercolor}%
+\setbeamerfont{sidebar}{size=\tiny}
+%\setbeamerfont{sidebar}{series=\footnotesize, size=\tiny}
+%\setbeamerfont{sidebar}{series=\scriptsize,size=\scriptsize}
+%\setbeamersize{sidebar width left=1.5cm}
+\setbeamersize{sidebar width left=0pt}
+%\setbeamercolor{sidebar left}{\thispdfpagelabel{\insertframenumber}}
+%\setbeamercolor{infolines footline}{bg=black!15}
+%\setbeamercolor{sidebar left}{bg=blue!15}
+%\setbeamercolor{sidebar left}{bg=blue!15}
+%\setbeamercolor{sidebar right}{bg=blue!15}
+\setbeamercolor{structure}{fg=\structurecolor}%
+%\setbeamercolor{structure}{size=\tiny}
+%\setbeamercolor{author}{parent=structure}
+\setbeamerfont{title}{series=\normalfont,size=\tiny}
+%\setbeamerfont{title in sidebar}{fg=\sidebarcolor}
+%\setbeamerfont{title in sidebar}{series=\bfseries,size=\Tiny}
+\setbeamerfont{subtitle in sidebar}{size=\tiny}
+\setbeamercolor{section in sidebar}{fg=\sidebarcolor}
+\setbeamercolor{subsection in sidebar}{fg=\sidebarcolor}
+%\setbeamerfont{author in sidebar}{fg=\sidebarcolor}
+%\setbeamerfont{author in sidebar}{series=\bfseries,size=\Tiny}
+\setbeamerfont{institute in sidebar}{size=\tiny}
+%\setbeamerfont*{item}{fg=grey}
+%\setbeamerfont{frametitle}{size=\large}
+%\setbeamerfont{block title}{size=\small}
+%\setbeamerfont{subtitle}{size=\large,series=\normalfont}
+
+% ----------------------------- %
+% --- Redefining Titlepages --- %
+% ----------------------------- %
+% Voeg automatisch een titelpagina in voor elke sectie
+%\renewcommand{\thesection}{\begin{color}{green}{section}\end{color}}
+\renewcommand{\thesection}{\arabic{section}}
+\AtBeginSection[]{
+    \frame<presentation>{
+        {
+        \begin{center}
+                \vskip3em
+            %\colorbox{\textfontcolor}{\begin{color}{black}
+            %    \Large{\textrm{\textbf{\ \ \thesection \ \ }}}
+            %\end{color}}
+                \vskip2em
+            \colorbox{\outercolor}{\begin{color}{green}
+                \Large{\textrm{\textbf{\insertsection}}}
+            \end{color}}
+                \vskip3em
+        \end{center}
+        }
+    }
+}
+%
+\setbeamercolor{background}{bg=black}
+\setbeamercolor{normal text}{fg=white,bg=black}
+\setbeamercovered{transparent}
