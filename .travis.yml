@@ -25,7 +25,7 @@ deploy:
   verbose: true
   skip_cleanup: true
   keep-history: true
-  github_token: ${GH_TOKEN}
+  api-key: ${GH_TOKEN}
   local-dir: _build
   file:
   - _build/sponsordoc-presentation.pdf
