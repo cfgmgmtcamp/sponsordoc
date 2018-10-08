@@ -3,18 +3,22 @@ branches:
   only:
     - master
 
+dist: bionic
 sudo: require
+language: bash
+
 
 install:
-- "sudo apt-get -qq update"
-- "sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng"
+  - "sudo apt-get -qq update"
+  - "sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng latex-beamer"
 
 script:
-- mkdir _build
-- pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc-presentation.tex
-- pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc-presentation.tex
-- pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc.tex
-- pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc.tex
+  - export DEBIAN_FRONTEND=noninteractive
+  - mkdir _build
+  - pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc-presentation.tex
+  - pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc-presentation.tex
+  - pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc.tex
+  - pdflatex -output-directory=_build -interaction=nonstopmode -file-line-error -no-shell-escape sponsordoc.tex
 
 deploy:
   provider: releases
