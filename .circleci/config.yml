@@ -8,11 +8,21 @@ jobs:
       - checkout
       - run:
           name: "Build PDF file"
-          command: make
+          command: TMPDIR=/tmp make
       - persist_to_workspace:
           root: .
           paths:
             - sponsordoc.pdf
+      - persist_to_workspace:
+          root: .
+          paths:
+            - sponsordoc-presentation.pdf
+      - store_artifacts:
+          path: /tmp/sponsordoc.pdf
+          destination: sponsordoc.pdf
+      - store_artifacts:
+          path: /tmp/sponsordoc-presentation.pdf
+          destination: sponsordoc-presentation.pdf
 
 workflows:
   version: 2
