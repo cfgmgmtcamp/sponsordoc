@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: "Build PDF file"
-          command: TMPDIR=/tmp make
+          command: make TMPDIR=/tmp
       - persist_to_workspace:
           root: .
           paths:
