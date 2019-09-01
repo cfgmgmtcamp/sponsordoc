@@ -8,6 +8,7 @@ dvi: presentation.tex
 presentation: sponsordoc-presentation.tex
 	@test -d $(TMPDIR) || mkdir $(TMPDIR)
 	@echo "Running 2 compiles"
+	@cp .git/gitHeadInfo.gin $(TMPDIR)/gitHeadLocal.gin
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error -no-shell-escape $< > /dev/null
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error -no-shell-escape $< > /dev/null
 	@cp $(TMPDIR)/sponsordoc-presentation.pdf sponsordoc-presentation.pdf
@@ -16,6 +17,7 @@ presentation: sponsordoc-presentation.tex
 handouts: sponsordoc.tex
 	@test -d $(TMPDIR) || mkdir $(TMPDIR)
 	@echo "Running 2 compiles"
+	@cp .git/gitHeadInfo.gin $(TMPDIR)/gitHeadLocal.gin
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error $< > /dev/null
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error $< > /dev/null
 	@cp $(TMPDIR)/sponsordoc.pdf sponsordoc.pdf
