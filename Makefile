@@ -1,6 +1,9 @@
 default all: pdf
 
-TMPDIR="/tmp"
+TMPDIR:=$(shell mktemp -d /tmp/latex.XXXX)
+FIRSTTAG:=$(shell git describe --tags --always --dirty='-*')
+RELTAG:=$(shell git describe --tags --long --always --dirty='-*' --match '[0-9]*.*')
+
 
 dvi: presentation.tex
 	latex '\nonstopmode \input presentation'
@@ -8,7 +11,6 @@ dvi: presentation.tex
 presentation: sponsordoc-presentation.tex
 	@test -d $(TMPDIR) || mkdir $(TMPDIR)
 	@echo "Running 2 compiles"
-	@cp .git/gitHeadInfo.gin $(TMPDIR)/gitHeadLocal.gin
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error -no-shell-escape $< > /dev/null
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error -no-shell-escape $< > /dev/null
 	@cp $(TMPDIR)/sponsordoc-presentation.pdf sponsordoc-presentation.pdf
@@ -17,13 +19,16 @@ presentation: sponsordoc-presentation.tex
 handouts: sponsordoc.tex
 	@test -d $(TMPDIR) || mkdir $(TMPDIR)
 	@echo "Running 2 compiles"
-	@cp .git/gitHeadInfo.gin $(TMPDIR)/gitHeadLocal.gin
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error $< > /dev/null
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error $< > /dev/null
 	@cp $(TMPDIR)/sponsordoc.pdf sponsordoc.pdf
 	@echo "Presentation PDF Ready"
 
-pdf: presentation handouts
+.PHONY:gitinfo
+gitinfo:
+	git log -1 --date=short --pretty=format:"\usepackage[shash={%h},lhash={%H},authname={%an},authemail={%ae},authsdate={%ad},authidate={%ai},authudate={%at},commname={%an},commemail={%ae},commsdate={%ad},commidate={%ai},commudate={%at},refnames={%d},firsttagdescribe="${FIRSTTAG}",reltag="${RELTAG}"]{gitexinfo}" HEAD > $(TMPDIR)/gitHeadLocal.gin
+
+pdf: gitinfo presentation handouts
 
 html: presentation.tex texi2html
 	texi2html -split_node -menu $<
