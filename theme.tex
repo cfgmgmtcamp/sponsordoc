@@ -1,3 +1,43 @@
+
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage[square,comma,numbers,sort&compress]{natbib}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{minitoc}
+\usepackage{verbatim}
+\usepackage{verbatim}
+\usepackage{color}
+\input{rgb.tex}
+\usepackage[local]{gitinfo2}
+
+\hypersetup{
+    hyperindex=true,
+    hyperfigures=true,
+    pagebackref=true,
+    colorlinks=true,
+    linkcolor=cyan,
+    anchorcolor=black,
+    citecolor=black,
+    filecolor=blue,
+    menucolor=black,
+    pagecolor=purple,
+    urlcolor=cyan,
+    pdfpagelabels=false,
+    %bookmarksnumbered,
+    %pdfborder=0 0 0,
+    pdftoolbar=false,
+    pdfmenubar=false,
+    %bookmarks=false,
+    pdfproducer={Toshaan Bharvani},
+    pdfcreator={LaTeX Beamer - VanTosh Template},
+    pdfauthor={Toshaan Bharvani <toshaan@vantosh.com>},
+    pdftitle={Welcome to CfgMgmtCamp Sponsoring Options},
+    pdfsubject={CfgMgmtCamp Sponsor Document},
+    pdfkeywords={CfgMgmtcamp,ConfigManagementCamp,InfraDays,YAMLCamp,VanTosh,Sponsor},
+}
+
 %\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=1cm]{images/background.png}}
 \def\outercolor{black}
 \def\textfontcolor{cyan}
@@ -59,10 +99,6 @@
 %\setbeamerfont{block title}{size=\small}
 %\setbeamerfont{subtitle}{size=\large,series=\normalfont}
 
-% ----------------------------- %
-% --- Redefining Titlepages --- %
-% ----------------------------- %
-% Voeg automatisch een titelpagina in voor elke sectie
 %\renewcommand{\thesection}{\begin{color}{green}{section}\end{color}}
 \renewcommand{\thesection}{\arabic{section}}
 \AtBeginSection[]{
