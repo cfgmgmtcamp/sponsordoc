@@ -1,4 +1,4 @@
-name: Build Sponsor Document LaTeX based
+name: Build Sponsor Document LaTeX based MASTER
 on:
   push:
     branches:
@@ -18,13 +18,16 @@ jobs:
         with:
           name: sponsordoc.pdf
           path: sponsordoc.pdf
+
+name: Build Sponsor Document LaTeX base RELEASE
 on:
   push:
     tags:
       - '*'
 jobs:
-  build:
+  deploy:
     name: Create Release
+    needs: build_latex
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
