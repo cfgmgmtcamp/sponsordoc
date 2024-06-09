@@ -12,6 +12,7 @@ build: sponsordoc.tex
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error -no-shell-escape $< > /dev/null
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error -no-shell-escape $< > /dev/null
 	@cp $(TMPDIR)/sponsordoc.pdf sponsordoc.pdf
+	@echo $(FIRSTTAG) > $(TMPDIR)/version
 	@echo "Sponsor Document PDF Ready"
 
 .PHONY: gitinfo

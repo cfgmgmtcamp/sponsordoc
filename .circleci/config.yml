@@ -13,16 +13,12 @@ jobs:
           root: .
           paths:
             - sponsordoc.pdf
-      - persist_to_workspace:
-          root: .
-          paths:
-            - sponsordoc.pdf
       - store_artifacts:
           path: /tmp/sponsordoc.pdf
           destination: sponsordoc.pdf
       - store_artifacts:
-          path: /tmp/sponsordoc.pdf
-          destination: sponsordoc.pdf
+          path: /tmp/version
+          destination: version
 
   publish-github-release:
     docker:
@@ -33,7 +29,7 @@ jobs:
       - run:
           name: "Publish Release on GitHub"
           command: |
-            TAG=$(git describe --abbrev=0 --tags --always)
+            TAG=$(cat ./artifacts/version)
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${TAG} ./artifacts/sponsordoc.pdf
 
 workflows:
