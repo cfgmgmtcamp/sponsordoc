@@ -16,13 +16,13 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - sponsordoc-presentation.pdf
+            - sponsordoc.pdf
       - store_artifacts:
           path: /tmp/sponsordoc.pdf
           destination: sponsordoc.pdf
       - store_artifacts:
-          path: /tmp/sponsordoc-presentation.pdf
-          destination: sponsordoc-presentation.pdf
+          path: /tmp/sponsordoc.pdf
+          destination: sponsordoc.pdf
 
   publish-github-release:
     docker:
