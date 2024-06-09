@@ -9,10 +9,6 @@ jobs:
       - run:
           name: "Build PDF file"
           command: make TMPDIR=/tmp
-      - persist_to_workspace:
-          root: .
-          paths:
-            - sponsordoc.pdf
       - store_artifacts:
           path: /tmp/sponsordoc.pdf
           destination: sponsordoc.pdf
