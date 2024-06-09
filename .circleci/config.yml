@@ -21,12 +21,12 @@ jobs:
       - image: cibuilds/github:0.13
     steps:
       - attach_workspace:
-          at: ./artifacts
+          at: /tmp/
       - run:
           name: "Publish Release on GitHub"
           command: |
-            TAG=$(cat version)
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${TAG} sponsordoc.pdf
+            TAG=$(cat /tmp/version)
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${TAG} /tmp/sponsordoc.pdf
 
 workflows:
   version: 2
