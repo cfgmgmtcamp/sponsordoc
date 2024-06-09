@@ -9,7 +9,8 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
-      - name: Compile LaTeX document
+      - id: latexdoc
+        name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
           root_file: sponsordoc.tex
@@ -18,6 +19,8 @@ jobs:
         with:
           name: sponsordoc
           path: sponsordoc.pdf
+    outputs:
+      pdffile: ${{ steps.latexdoc.outputs.sponsordoc }}
   deploy:
     name: Create Release
     needs: build_latex
@@ -26,6 +29,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Sponsordoc ${{ github.ref }}
-          files: sponsordoc.pdf
+          files: ${{ build_latex.outputs.pdffile }}
