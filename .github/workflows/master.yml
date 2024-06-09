@@ -16,5 +16,5 @@ jobs:
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
-          name: sponsordoc.pdf
+          name: sponsordoc
           path: sponsordoc.pdf
