@@ -1,8 +1,8 @@
-name: Build Sponsor Document LaTeX based MASTER
+name: Build MASTER Sponsor Document LaTeX based
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   build_latex:
     runs-on: ubuntu-latest

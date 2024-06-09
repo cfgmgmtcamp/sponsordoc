@@ -1,4 +1,4 @@
-name: Build Sponsor Document LaTeX base RELEASE
+name: Build TAG Sponsor Document LaTeX base
 on:
   push:
     tags:
