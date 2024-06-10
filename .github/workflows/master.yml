@@ -10,7 +10,7 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
       - name: Install TexLive packages
-        uses: actions/cache-apt-pkgs-action@lates
+        uses: actions/cache-apt-pkgs-action@latest
         with:
           packages: texlive-full
           version: latest
