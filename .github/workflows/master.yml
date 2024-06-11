@@ -12,6 +12,7 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
+      - name: Update apt-get Caches
         run: apt-get update
       - name: Install TexLive packages
         run: apt-get install texlive-full
