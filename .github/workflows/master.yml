@@ -12,8 +12,10 @@ jobs:
       - name: Install TexLive packages
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: texlive-full
+          packages: git bash texlive-full
           version: latest
+      - name: Update all git information
+        run: git fetch --tags
       - name: Compile LaTeX document
         run: make
         #uses: xu-cheng/latex-action@v3
