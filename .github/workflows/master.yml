@@ -13,9 +13,9 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
       - name: Update apt-get Caches
-        run: apt-get update
+        run: sudo apt-get update
       - name: Install TexLive packages
-        run: apt-get install texlive-full
+        run: sudo apt-get -y install texlive-full
       - name: Print latest git tag
         run: git describe --abbrev=0 --tags --always
       - name: Compile LaTeX document
