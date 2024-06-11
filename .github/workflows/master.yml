@@ -15,7 +15,7 @@ jobs:
       - name: Install TexLive packages
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: git bash texlive-full
+          packages: texlive-full
           version: latest
       - name: Print latest git tag
         run: git describe --abbrev=0 --tags --always
