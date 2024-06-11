@@ -17,6 +17,7 @@ jobs:
         with:
           packages: texlive-full
           version: latest
+          execute_install_scripts: true
       - name: Print latest git tag
         run: git describe --abbrev=0 --tags --always
       - name: Compile LaTeX document
