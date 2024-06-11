@@ -7,24 +7,32 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git repository
+      - id: clone_git
+        name: Set up Git repository
         uses: actions/checkout@v4
-      - id: latexdoc
-        name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
         with:
-          root_file: sponsordoc.tex
-      - name: Upload PDF file
+          fetch-depth: 0
+          fetch-tags: true
+      - id: apt_get_update
+        name: Update apt-get Caches
+        run: sudo apt-get update
+      - id: install_latex
+        name: Install TexLive packages
+        run: sudo apt-get -y install texlive-full
+      - id: print_git_tag
+        name: Print latest git tag
+        run: git describe --abbrev=0 --tags --always
+      - id: compile_latex_doc
+        name: Compile LaTeX document
+        run: make
+      - id: upload_pdf
+        name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
           name: sponsordoc
           path: sponsordoc.pdf
-#  deploy:
-#    name: Create Release
-#    needs: build_latex
-#    runs-on: ubuntu-latest
-#    steps:
-      - name: Release
+      - id: create_release
+        name: Create GH Release
         uses: softprops/action-gh-release@v2
         with:
           files: sponsordoc.pdf
