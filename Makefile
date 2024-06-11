@@ -8,10 +8,11 @@ pdf: gitinfo build
 
 build: sponsordoc.tex
 	@test -d $(TMPDIR) || mkdir $(TMPDIR)
+	@echo "TAG : "$(FIRSTTAG)
 	@echo "Running 2 compiles $(TMPDIR)"
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error -no-shell-escape $< > /dev/null
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error -no-shell-escape $< > /dev/null
-	@cp $(TMPDIR)/sponsordoc.pdf sponsordoc.pdf
+	@cp -f $(TMPDIR)/sponsordoc.pdf sponsordoc.pdf
 	@echo $(FIRSTTAG) > $(TMPDIR)/version
 	@echo "Sponsor Document PDF Ready"
 
@@ -23,3 +24,4 @@ gitinfo:
 clean:
 	@rm -rf /tmp/latex*
 	@rm -f *.pdf
+
