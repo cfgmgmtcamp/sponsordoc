@@ -8,13 +8,13 @@ pdf: gitinfo build
 
 build: sponsordoc.tex
 	@test -d $(TMPDIR) || mkdir $(TMPDIR)
-	@echo "TAG : "$(FIRSTTAG)
+	@echo "TMPDIR : $(TMPDIR)"
+	@echo "TAG : $(FIRSTTAG)"
 	@pdflatex -version
-	@echo "Running 2 compiles $(TMPDIR)"
+	@echo "Running 2 compiles"
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error -no-shell-escape $< > /dev/null
 	@pdflatex -output-directory=$(TMPDIR) -interaction=batchmode -file-line-error -no-shell-escape $< > /dev/null
 	@cp $(TMPDIR)/sponsordoc.pdf sponsordoc.pdf
-	@echo $(FIRSTTAG) > $(TMPDIR)/version
 	@echo "Sponsor Document PDF Ready"
 
 .PHONY: gitinfo
