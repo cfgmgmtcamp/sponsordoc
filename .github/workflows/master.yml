@@ -12,12 +12,9 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
+        run: apt-get update
       - name: Install TexLive packages
-        uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: texlive-full
-          version: latest
-          execute_install_scripts: true
+        run: apt-get install texlive-full
       - name: Print latest git tag
         run: git describe --abbrev=0 --tags --always
       - name: Compile LaTeX document
